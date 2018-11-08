@@ -1,8 +1,18 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./RegisterChatbot.css";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  CustomAxisTick,
+  Tooltip,
+  ResponsiveContainer
+} from "recharts";
 
-class FileUpload extends Component {
+class RegisterChatbot extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,10 +27,13 @@ class FileUpload extends Component {
 
     const data = new FormData();
     data.append("botname", this.botname.value);
-    data.append("botdata", {
-      name: this.botname.value,
-      language: this.language.value
-    });
+    data.append(
+      "botdata",
+      JSON.stringify({
+        name: this.botname.value,
+        language: this.language.value
+      })
+    );
     console.log(data);
 
     axios
@@ -49,8 +62,25 @@ class FileUpload extends Component {
 
   //Render the layout
   render() {
+    let data = [
+      { uv: 12, value: 10, minute: 2, score: 12, player: "jhon" },
+      { uv: 23, value: 30 },
+      { uv: 31, value: 40 },
+      { uv: 22, value: 20 }
+    ];
+
     return (
       <div className="container register-form">
+        {/*style={{ "background-color": "white" }} */}
+        <div>
+          <LineChart width={400} height={400} data={data}>
+            <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+            <Line type="monotone" dataKey="value" stroke="#8884d8" />
+            <CartesianGrid stroke="#ccc" strokeDasharray="1 9" />
+            <XAxis dataKey="value" />
+            <YAxis dataKey="value" />
+          </LineChart>
+        </div>
         <form onSubmit={this.handleRegisterChatbot}>
           {/*Might need a title here, like "Register Chatbot" */}
 
@@ -147,4 +177,4 @@ class FileUpload extends Component {
   }
 }
 
-export default FileUpload;
+export default RegisterChatbot;

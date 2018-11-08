@@ -30,19 +30,17 @@ app.use("/users", usersRouter);
 //***************************************** */
 //Register new chatbot
 app.post("/register", (req, res) => {
-  /*
-  let imageFile = req.files.file;
+  let data = JSON.parse(req.body.botdata);
 
-  imageFile.mv(`${__dirname}/public/${req.body.filename}.jpg`, function(err) {
-    if (err) {
-      return res.status(500).send(err);
-    }
+  //Initialize bot with kubernetes
 
-    res.json({ file: `public/${req.body.filename}.jpg` });
-  });*/
+  //Save/Register topics in Topic Directory
+  console.log(`BotName: ${data.name}`);
+  console.log(`Language: ${data.language}`);
+});
 
-  let data = req.body.botname;
-  console.log(req.body);
+app.get("/getstatus", (req, res) => {
+  let data = req.body.botdata;
 });
 
 // catch 404 and forward to error handler
