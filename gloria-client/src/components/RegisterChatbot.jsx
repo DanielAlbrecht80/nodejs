@@ -72,7 +72,7 @@ class RegisterChatbot extends Component {
     return (
       <div className="container register-form">
         {/*style={{ "background-color": "white" }} */}
-        <div>
+        {/*<div>
           <LineChart width={400} height={400} data={data}>
             <Line type="monotone" dataKey="uv" stroke="#8884d8" />
             <Line type="monotone" dataKey="value" stroke="#8884d8" />
@@ -81,6 +81,7 @@ class RegisterChatbot extends Component {
             <YAxis dataKey="value" />
           </LineChart>
         </div>
+        */}
         <form onSubmit={this.handleRegisterChatbot}>
           {/*Might need a title here, like "Register Chatbot" */}
 
