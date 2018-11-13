@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./RegisterChatbot.css";
 
 class Popup extends React.Component {
+  //static contextType =
+
   render() {
     return (
       <div className="popup">
