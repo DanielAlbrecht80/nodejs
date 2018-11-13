@@ -25,8 +25,8 @@ class ChartExample extends Component {
         <LineChart width={400} height={400} data={data}>
           <Line type="monotone" dataKey="uv" stroke="#8884d8" />
           <Line type="monotone" dataKey="value" stroke="#8884d8" />
-          <CartesianGrid stroke="#ccc" strokeDasharray="1 9" />
-          <XAxis dataKey="value" />
+          <CartesianGrid stroke="#cccccc" strokeDasharray="1 9" />
+          <XAxis />
           <YAxis dataKey="value" />
         </LineChart>
       </div>

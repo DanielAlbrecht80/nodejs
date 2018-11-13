@@ -9,7 +9,8 @@ class RegisterChatbot extends Component {
     this.state = {
       imageURL: "/images/default-avatar.jpg",
       uploadStatus: false,
-      showPopup: false
+      showPopup: false,
+      message: ""
     };
     this.handleRegisterChatbot = this.handleRegisterChatbot.bind(this);
     this.togglePopup = this.togglePopup.bind(this);
@@ -23,8 +24,10 @@ class RegisterChatbot extends Component {
     data.append(
       "botdata",
       JSON.stringify({
+        id: 0,
         name: this.botname.value,
-        language: this.language.value
+        language: this.language.value,
+        topic: ["topic1"]
       })
     );
     console.log(data);
@@ -34,12 +37,18 @@ class RegisterChatbot extends Component {
       .then(response => {
         console.log("Response");
         console.log(response);
+        this.state.message = "Bot saved and initialized";
         this.setState({
-          showPopup: !this.state.showPopup
+          showPopup: !this.state.showPopup,
+          message: this.state.message
         });
       })
-      .catch(function(error) {
-        console.log(error);
+      .catch(error => {
+        console.log(error.response);
+        this.setState({
+          showPopup: !this.state.showPopup,
+          message: `Error : ${error.response.data}`
+        });
       });
   }
 
@@ -59,13 +68,6 @@ class RegisterChatbot extends Component {
 
   //Render the layout
   render() {
-    let data = [
-      { uv: 12, value: 10, minute: 2, score: 12, player: "jhon" },
-      { uv: 23, value: 30 },
-      { uv: 31, value: 40 },
-      { uv: 22, value: 20 }
-    ];
-
     return (
       <div className="container register-form">
         <form onSubmit={this.handleRegisterChatbot}>
@@ -161,10 +163,7 @@ class RegisterChatbot extends Component {
         </form>
 
         {this.state.showPopup ? (
-          <Popup
-            text="Bot saved and initialized"
-            closePopup={this.togglePopup}
-          />
+          <Popup text={this.state.message} closePopup={this.togglePopup} />
         ) : null}
       </div>
     );
