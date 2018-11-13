@@ -37,6 +37,7 @@ app.post("/register", (req, res) => {
   //Save/Register topics in Topic Directory
   console.log(`BotName: ${data.name}`);
   console.log(`Language: ${data.language}`);
+  res.send(data);
 });
 
 app.get("/getstatus", (req, res) => {

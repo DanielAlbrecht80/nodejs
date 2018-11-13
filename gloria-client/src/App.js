@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import NavBar from "./components/NavBar";
+import { BrowserRouter, NavLink, Route } from "react-router-dom";
 import RegisterChatbot from "./components/RegisterChatbot";
 import "./styles/App.css";
 import { Redirect } from "react-router-dom";
@@ -11,26 +12,22 @@ class App extends Component {
     selectedMenu: "registerbot"
   };
 
+  //Not used
   handleOnSelect = selectedItem => {
     const selectedMenu = selectedItem;
     this.setState({ selectedMenu });
   };
 
   render() {
-    let content = <RegisterChatbot />;
-    if (this.state.selectedMenu === 2) {
-      content = <ChartExample />;
-    } else {
-      content = <RegisterChatbot />;
-    }
-
     return (
-      <React.Fragment>
-        <NavBar onSelect={this.handleOnSelect} />
-        <main className="container">
-          <div className="App">{content}</div>
-        </main>
-      </React.Fragment>
+      <BrowserRouter>
+        <React.Fragment>
+          <NavBar onSelect={this.handleOnSelect} />
+          <Route path="/" exact component={RegisterChatbot} />
+          <Route path="/ChartExample" component={ChartExample} />
+          <Route path="/RegisterChatbot" component={RegisterChatbot} />
+        </React.Fragment>
+      </BrowserRouter>
     );
   }
 }

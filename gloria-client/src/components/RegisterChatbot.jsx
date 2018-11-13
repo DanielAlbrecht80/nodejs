@@ -1,25 +1,18 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./RegisterChatbot.css";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  CustomAxisTick,
-  Tooltip,
-  ResponsiveContainer
-} from "recharts";
+import Popup from "./Popup";
 
 class RegisterChatbot extends Component {
   constructor(props) {
     super(props);
     this.state = {
       imageURL: "/images/default-avatar.jpg",
-      uploadStatus: false
+      uploadStatus: false,
+      showPopup: false
     };
     this.handleRegisterChatbot = this.handleRegisterChatbot.bind(this);
+    this.togglePopup = this.togglePopup.bind(this);
   }
 
   handleRegisterChatbot(ev) {
@@ -37,16 +30,13 @@ class RegisterChatbot extends Component {
     console.log(data);
 
     axios
-      .post("http://localhost:8000/register", data)
+      .post("http://localhost:3001/register", data)
       .then(response => {
+        console.log("Response");
         console.log(response);
-        /*this.setState({
-          imageURL: `http://localhost:8000/${response.data.file.replace(
-            "public/",
-            ""
-          )}`,
-          uploadStatus: true
-        });*/
+        this.setState({
+          showPopup: !this.state.showPopup
+        });
       })
       .catch(function(error) {
         console.log(error);
@@ -60,6 +50,13 @@ class RegisterChatbot extends Component {
     verticalAlign: "middle"
   };
 
+  togglePopup() {
+    console.log("toggle");
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
+  }
+
   //Render the layout
   render() {
     let data = [
@@ -71,17 +68,6 @@ class RegisterChatbot extends Component {
 
     return (
       <div className="container register-form">
-        {/*style={{ "background-color": "white" }} */}
-        {/*<div>
-          <LineChart width={400} height={400} data={data}>
-            <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-            <Line type="monotone" dataKey="value" stroke="#8884d8" />
-            <CartesianGrid stroke="#ccc" strokeDasharray="1 9" />
-            <XAxis dataKey="value" />
-            <YAxis dataKey="value" />
-          </LineChart>
-        </div>
-        */}
         <form onSubmit={this.handleRegisterChatbot}>
           {/*Might need a title here, like "Register Chatbot" */}
 
@@ -173,6 +159,13 @@ class RegisterChatbot extends Component {
             Register
           </button>
         </form>
+
+        {this.state.showPopup ? (
+          <Popup
+            text="Bot saved and initialized"
+            closePopup={this.togglePopup}
+          />
+        ) : null}
       </div>
     );
   }
