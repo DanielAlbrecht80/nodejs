@@ -2,8 +2,8 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
-var logger = require("morgan");
 const fileUpload = require("express-fileupload");
+var logger = require("morgan");
 const cors = require("cors");
 
 var indexRouter = require("./routes/index");
