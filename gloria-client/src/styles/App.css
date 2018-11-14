@@ -13,6 +13,11 @@
   color: #61dafb;
 }
 
+.container {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
 .avatar {
   vertical-align: middle;
   width: 50px;
@@ -23,12 +28,12 @@
   /*border: 2px solid #1b1d31;*/
 }
 
-.menuitem:hover {
-  text-shadow: 0px 0px 15px #c3ff9b;
-  color: rgb(218, 236, 253) !important;
-  /*background-color: #c3ff9b;*/
-  /*border-radius: 10px 10px;*/
-  /*padding: 5px;*/
+.menuitem a:hover {
+  color: black;
+  text-shadow: 0px 0px 25px #c3ff9b;
+
+  font-style: normal;
+  text-decoration: none;
   cursor: pointer;
 }
 

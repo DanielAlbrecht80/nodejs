@@ -35,8 +35,6 @@ class RegisterChatbot extends Component {
     axios
       .post("http://localhost:3001/register", data)
       .then(response => {
-        console.log("Response");
-        console.log(response);
         this.state.message = "Bot saved and initialized";
         this.setState({
           showPopup: !this.state.showPopup,
@@ -69,7 +67,7 @@ class RegisterChatbot extends Component {
   //Render the layout
   render() {
     return (
-      <div className="container register-form">
+      <div className="register-form">
         <form onSubmit={this.handleRegisterChatbot}>
           {/*Might need a title here, like "Register Chatbot" */}
 

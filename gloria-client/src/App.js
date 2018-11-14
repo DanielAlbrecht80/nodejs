@@ -23,9 +23,11 @@ class App extends Component {
       <BrowserRouter>
         <React.Fragment>
           <NavBar onSelect={this.handleOnSelect} />
-          <Route path="/" exact component={RegisterChatbot} />
-          <Route path="/ChartExample" component={ChartExample} />
-          <Route path="/RegisterChatbot" component={RegisterChatbot} />
+          <div className="container">
+            <Route path="/" exact component={RegisterChatbot} />
+            <Route path="/ChartExample" component={ChartExample} />
+            <Route path="/RegisterChatbot" component={RegisterChatbot} />
+          </div>
         </React.Fragment>
       </BrowserRouter>
     );
