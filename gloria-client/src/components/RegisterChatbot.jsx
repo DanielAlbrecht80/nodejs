@@ -42,10 +42,14 @@ class RegisterChatbot extends Component {
         });
       })
       .catch(error => {
-        console.log(error.response);
+        console.log(error);
+        let errormsg = "";
+        if (error.response && error.response.data)
+          errormsg = error.response.data;
+        else errormsg = error.toString();
         this.setState({
           showPopup: !this.state.showPopup,
-          message: `Error : ${error.response.data}`
+          message: errormsg
         });
       });
   }
